@@ -35,9 +35,30 @@ var maxProduct = function(nums) {
     return sum;
 };
 
+//----------------------------------------------------
+
+var maxProduct2 = function(nums) {
+  let prevMax =nums[0];
+  let prevMin = nums[0];
+  let result = nums[0];
+
+  for(let i= 1; i < nums.length; i++){
+
+    let currMax = Math.max(nums[i], nums[i]*prevMax, nums[i]*prevMin)
+    let currMix = Math.min(nums[i], nums[i]*prevMax, nums[i]*prevMin)
+
+    prevMax = currMax;
+    prevMin = currMix;
+
+    result = Math.max(result, currMax);
+  }
+
+  return result
+
+}
 
 let nums = [2,3,-2,4]; //Output: 6
 
-console.log(maxProduct(nums));
+console.log(maxProduct2(nums));
 
 
