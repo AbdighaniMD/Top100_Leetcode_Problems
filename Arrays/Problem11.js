@@ -4,7 +4,26 @@
  * @param {number} k
  * @return {number[]}
  */
+
 var maxSlidingWindowNaive = function(nums, k) {
+
+  let result = []
+
+  for(let i = 0; i <= nums.length-k; i++){
+    let max = nums[i]
+    for(let j = 1; j < k; j++){
+      if(nums[i + j] > max){
+        max = nums[j+i]
+      }
+    }
+    result.push(max)
+  }
+
+  return result
+};
+
+
+var maxSlidingWindowNaive2 = function(nums, k) {
     let WindowStart =0;
     let result = []
     let tempArr = []
@@ -51,10 +70,34 @@ var maxSlidingWindow = function(nums, k) {
       return result;
 };
 
+var maxSlidingWindow2 = function(nums, k) {
+  const deque = [];
+  const result = [];
 
-let nums = [1,3,-1,-3,5,3,6,7]
-let k = 3 //Output: [3,3,5,5,6,7]
+  for(let i =0; i < nums.length; i++){
+    if(deque.length > 0 && deque[0] <= i - k){
+      deque.shift();
+    }
 
-console.log(maxSlidingWindowNaive(nums, k))
+    while(deque.length > 0 && nums[deque[deque.length-1]] < nums[i]){
+      deque.pop();
+    }
 
-console.log(maxSlidingWindow(nums, k))
+    deque.push(i);
+
+    if(i >= k -1){
+      result.push(nums[deque[0]]);
+    }
+  }
+  
+    return result;
+};
+
+
+let nums = [1,3,-1,-3,5,3,6,7];
+let k = 3; //Output: [3,3,5,5,6,7]
+console.log(maxSlidingWindowNaive(nums, k));
+console.log(maxSlidingWindowNaive2(nums, k));
+
+console.log(maxSlidingWindow(nums, k));
+console.log(maxSlidingWindow2(nums, k));
