@@ -16,7 +16,7 @@ var setZeroes = function(matrix) {
     }
 
     console.log(zeroePos)
-/*
+
     for(let i= 0; i < zeroePos.length; i++){
         const [row, col] = zeroePos[i]; // [1,1]
 
@@ -28,7 +28,7 @@ var setZeroes = function(matrix) {
             matrix[row][c] = 0;
         }
     }
-*/
+    
     return matrix
 };
 
