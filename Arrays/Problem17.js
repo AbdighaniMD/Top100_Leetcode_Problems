@@ -40,6 +40,32 @@ var isValidSudoku = function(board) {
     return true;
 };
 
+var isValidSudoku2 = function(board) {
+    let row = [], cols = [], boxes =[]
+
+    for(let i = 0; i < board.length; i++){
+        row.push(new Set())
+        cols.push(new Set())
+        boxes.push(new Set())
+    }
+
+    for(let i = 0; i < board.length; i++){
+        for(let j = 0; j < board[i].length; j++){
+            let cell = board[j][i];
+            if(cell === ".") continue;
+            const boxNum = 3 * Math.floor(i/3) + Math.floor(j/3);
+            if(row[i].has(cell) || cols[i].has(cell)) return false;
+            row[i].add(cell)
+            cols[j].add(cell)
+            boxes[boxNum].add(cell)
+        }
+    }
+
+
+    return true;
+};
+
+
 let board = 
 [["5","3",".",".","7",".",".",".","."]
 ,["6",".",".","1","9","5",".",".","."]
