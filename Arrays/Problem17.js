@@ -54,7 +54,7 @@ var isValidSudoku2 = function(board) {
             let cell = board[j][i];
             if(cell === ".") continue;
             const boxNum = 3 * Math.floor(i/3) + Math.floor(j/3);
-            if(row[i].has(cell) || cols[i].has(cell)) return false;
+            if(row[i].has(cell) || cols[j].has(cell) || boxes[boxNum].has(cell)) return false;
             row[i].add(cell)
             cols[j].add(cell)
             boxes[boxNum].add(cell)
@@ -77,5 +77,5 @@ let board =
 ,[".",".",".","4","1","9",".",".","5"]
 ,[".",".",".",".","8",".",".","7","9"]]; // Output: true
 
-console.log(isValidSudoku(board));
+console.log(isValidSudoku2(board));
 
