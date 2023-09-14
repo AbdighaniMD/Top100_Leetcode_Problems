@@ -1,37 +1,26 @@
 /**
- * 39 leetcode medium. Combination Sum
- * @param {number[]} candidates
- * @param {number} target
- * @return {number[][]}
+ * 1929 leetcode Easy. Concatenation of Array
+ * @param {number[]} nums
+ * @return {number[]}
  */
-var combinationSum = function(candidates, target) {
+var getConcatenation = function(nums) {
 
-    candidates.sort((a,b) => a - b);
-    let dp = [[[]]];
-
-    for(let sum = 0; sum <= target; sum++ ){
-        dp[sum] = [];
-        let combine = []
-
-        for(let i = 0; i < candidates.length && candidates[i] <= sum; i++){
-            if(sum === candidates[i]){
-                combine.push([candidates[i]]);
-            } else {
-                for(let prev of dp[sum-candidates[i]]){
-                    if(candidates[i] >= prev[prev.length-1]){
-                        combine.push([...prev, candidates[i]]);
-                    }
-                }
-            }
-            dp[sum] = combine;
-        }
+    let result = [];
+    for(let i = 0; i < nums.length; i++){
+        result.push(nums[i])
     }
 
-    return dp[target]
+    return nums.concat(result);
+};
+//--------------------------------------------------
+var getConcatenation2 = function(nums) {
+    let len = nums.length
+    for (let i = 0; i < len; i++) {
+        nums.push(nums[i])
+    }
+    return nums
 };
 
 
-let candidates = [2,3,6,7]; 
-let target = 7 //Output: [[2,2,3], [7]]
-
-console.log(combinationSum(candidates, target))
+let nums = [1,2,1] //Output: [1,2,1,1,2,1]
+console.log(getConcatenation2(nums))
