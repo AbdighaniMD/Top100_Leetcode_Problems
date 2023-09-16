@@ -4,7 +4,7 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function(candidates, target) {
+var DPcombinationSum = function(candidates, target) {
 
     candidates.sort((a,b) => a - b);
     let dp = [[[]]];
@@ -29,9 +29,31 @@ var combinationSum = function(candidates, target) {
 
     return dp[target]
 };
+//-----------------------------------------------------
+var RecursioncombinationSum = function(candidates, target) {
+    let result = [];
+
+    function dfs (index, currentVal, arr){
+        if(currentVal < 0) return ;
+        if (currentVal === 0 ){
+            result.push([...arr])
+        }
+
+        for(let i = index; i < candidates.length; i++){
+            arr.push(candidates[i]);
+            dfs(i, currentVal-candidates[i], arr);
+            arr.pop()
+        }
+    }
+    dfs(0, target, [])
+
+    return result
+};
 
 
 let candidates = [2,3,6,7]; 
 let target = 7 //Output: [[2,2,3], [7]]
 
-console.log(combinationSum(candidates, target))
+console.log(DPcombinationSum(candidates, target))
+
+console.log(RecursioncombinationSum(candidates, target))
