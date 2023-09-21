@@ -27,7 +27,7 @@ let groupAnagrams2 = function (strs) {
     for (const str of strs) {
 
         let key = str.split("").sort().join("");
-        
+
         if (!map.has(key)) {
             map.set(key, []);
         }
@@ -35,8 +35,8 @@ let groupAnagrams2 = function (strs) {
     }
 
     const result = [];
-    for (const key of map.keys()) {
-        result.push(map.get(key));
+    for (const values of map.keys()) {
+        result.push(map.get(values));
     }
     return result;
 }
