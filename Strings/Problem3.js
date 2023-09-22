@@ -15,12 +15,37 @@ var lengthOfLongestSubstring = function(s) {
         }
         object[currentLetter]= i;
 
-        maxCount = Math.max(maxCount, i - startwindow +1);
+        let currentLengthArray = i - startwindow +1;
+
+        maxCount = Math.max(maxCount, currentLengthArray);
     }
-    //console.log(object)
+
     return maxCount
 }
+//-------------------------------------------------------------
+const isUnique = (s) =>{
+    const set = new Set();
+    for(let i = 0; i < s.length; i++){
+        if(set.has(s[i])){
+            return false
+        }
+        set.add(s[i])
+    }
+    return true
+}
+var lengthOfLongestSubstringBasic = function(s) {
+    let maxCount = 0;
+    for(let start = 0; start < s.length; start++){
+        for(let end = start; end < s.length; end++){
+            let substring = s.substring(start, end+1);
+            if(isUnique(substring)){
+                maxCount = Math.max(maxCount, substring.length);
+            }
+        }
 
+    }
+    return maxCount
+}
 //-------------------------------------------------------------
 var lengthOfLongestSubstring2 = function(s) {
     let set = new Set()
@@ -52,4 +77,5 @@ var lengthOfLongestSubstring2 = function(s) {
  */
 let  s = "abcabcbb" 
 console.log(lengthOfLongestSubstring(s))
+console.log(lengthOfLongestSubstringBasic(s))
 console.log(lengthOfLongestSubstring2(s))
