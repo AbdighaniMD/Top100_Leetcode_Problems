@@ -25,10 +25,25 @@ var twoSum = function(numbers, target) {
     return result
 };
 
+//-----------------------------------------------------------------
+var twoSum2 = function(nums, target) {
+    let map = new Map();
+    for(let i=0; i < nums.length; i++){
+        const compliment = target - nums[i];
+        if(map.has(compliment)){
+            console.log(map)
+            return [map.get(compliment) +1, i+1]
+        } else {
+            map.set(nums[i], i);
+        }
+    }
+}
+
 
 let numbers = [2,7,11,15]
 let target = 9
 
 
 console.log(twoSum(numbers, target));
+console.log(twoSum2(numbers, target));
 //Output: [1,2]
