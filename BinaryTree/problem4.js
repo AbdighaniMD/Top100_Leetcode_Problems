@@ -28,12 +28,35 @@ var levelOrder = function(root) {
         
             if (currentNode.left) queue.push(currentNode.left)
             if (currentNode.right) queue.push(currentNode.right)
-            
+
             level.push(currentNode.val)
             levelSize--;
         }
         result.push(level);
     }
+     //console.log(result)
+     return result
+};
 
-     console.log(result)
+
+var levelOrderRecursion = function(root) {
+    //if (root === null) return [];
+
+    let result = []
+
+    function helperDepth(node, currentDepth){
+        if(!node) return;
+
+        if(!result[currentDepth]){
+            result[currentDepth] = []
+        }
+
+        result[currentDepth].push(node.val)
+        helperDepth(node.left, currentDepth + 1)
+        helperDepth(node.right, currentDepth + 1)
+    }
+
+    helperDepth(root, 0)
+
+    return result
 };
