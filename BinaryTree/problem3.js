@@ -27,3 +27,28 @@ var maxDepth = function(root) {
     helperDepth(root, 1)
     return maxDepth
 };
+
+
+var bfsMaxDepth = function(root){
+
+    if (!root) return 0;
+    
+    let queue = []
+    let result = 0
+    queue.push(root)
+
+    while(queue.length){
+        let len = queue.length;
+        for(let i = 0; i < len; i++){
+
+            let currentNode = queue.shift()
+            if (currentNode.left) queue.push(currentNode.left)
+            if (currentNode.right) queue.push(currentNode.right)
+        }
+
+        result ++
+
+    }
+
+    return result
+} 
