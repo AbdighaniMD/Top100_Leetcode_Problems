@@ -13,7 +13,7 @@
  */
 var maxDepth = function(root) {
     let maxDepth = 0;
-    
+
     function helperDepth(node, currentDepth){
         if(!node){
             maxDepth = Math.max(currentDepth -1, maxDepth);
